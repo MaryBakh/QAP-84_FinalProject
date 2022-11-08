@@ -1,20 +1,6 @@
 #!/usr/bin/python3
 # -*- encoding=utf8 -*-
 
-# You can find very simple example of the usage Selenium with PyTest in this file.
-#
-# More info about pytest-selenium:
-#    https://pytest-selenium.readthedocs.io/en/latest/user_guide.html
-#
-# How to run:
-#  1) Download geko driver for Chrome here:
-#     https://chromedriver.storage.googleapis.com/index.html?path=2.43/
-#  2) Install all requirements:
-#     pip install -r requirements.txt
-#  3) Run tests:
-#     python3 -m pytest -v --driver Chrome --driver-path /tests/chrome test_selenium_simple.py
-#
-
 import time
 
 import pytest
@@ -52,26 +38,32 @@ def tests_main():
     # 1 Запуск теста регистрации с корректными данными
     test_reg.test_success()
 
-    # # 2 Запуск теста регистрации с некорректными данными в поле Имя
-    # test_reg.test_except_name_with_email_fail()
-    #
-    # # 3 Запуск теста регистрации с некорректными данными в поле Фамилия
-    # test_reg.test_except_name_with_phone_fail()
-    #
-    # # 4 Запуск теста регистрации с некорректными данными в поле Email
-    # test_reg.test_except_phone_confirmpass_fail()
-    #
-    # # 5 Запуск теста регистрации с некорректными данными в поле Телефон
-    # test_reg.test_except_surname_pass_with_phone_fail()
-    #
-    # # 6 Запуск теста регистрации с некорректными данными в поле Пароль
-    # test_reg.test_except_email_confirmpass_fail()
-    #
-    # # 7 Запуск теста регистрации с некорректными данными в поле Повтор пароля
-    # test_reg.test_except_surname_pass_with_email_fail()
-    # #
-    # # # 8 Запуск теста регистрации нового пользоваьтеля с уже зарегестрированным email
-    # # test_reg.test_user_exists()
+    # 2 Запуск теста регистрации с корректными данными в поле Имя, некорректными данными в остальных полях,
+    # используется некорректный emailрегистрации с некорректными данными в поле Имя
+    test_reg.test_except_name_with_email_fail()
+
+    # 3 Запуск теста регистрации с корректными данными в поле Имя, некорректными данными в остальных полях,
+    # используется некорректный номер телефона
+    test_reg.test_except_name_with_phone_fail()
+
+    # 4 Запуск теста с корректными данными в полях Мобильный телефон и Подтверждение пароля,
+    # некорректными данными в остальных полях
+    test_reg.test_except_phone_confirmpass_fail()
+
+    # 5 Запуск теста регистрации с корректными данными в полях Фамилия и Пароль,
+    # некорректными данными в остальных полях
+    test_reg.test_except_surname_pass_with_phone_fail()
+
+    # 6 Запуск теста регистрации с корректными данными в полях Email и Подтверждение пароля,
+    # некорректными данными в остальных полях
+    test_reg.test_except_email_confirmpass_fail()
+
+    # 7 Запуск теста регистрации с корректными данными в полях Фамилия и Пароль,
+    # некорректными данными в остальных полях
+    test_reg.test_except_surname_pass_with_email_fail()
+
+    # 8 Запуск теста регистрации нового пользоваьтеля с уже зарегестрированным email
+    test_reg.test_user_exists()
 
     test_auth = TestsAuth(test_api)
 

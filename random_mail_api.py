@@ -36,10 +36,8 @@ class RandomMailApi:
             'https://www.1secmail.com/api/v1/?action=getMessages&login={0}&domain={1}'.format(elems[0], elems[1]))
         status = res.status_code
 
-        print('3333', status)
-
         id = 0
-        if (status == 200):
+        if status == 200:
             try:
                 result = res.json()
                 id = result[0]['id']
@@ -50,7 +48,6 @@ class RandomMailApi:
             print("Error request to mail: ", status)
             id = 0
 
-        print('4444', id)
         return id
 
     def get_confirmation_code(self, email='', id=0):
@@ -63,10 +60,8 @@ class RandomMailApi:
             'https://www.1secmail.com/api/v1/?action=readMessage&login={0}&domain={1}&id={2}'.format(elems[0], elems[1], id))
         status = res.status_code
 
-        print('5555', status)
-
         code = ''
-        if (status == 200):
+        if status == 200:
             try:
                 result = res.text
                 found = result.find(CODE_HEADER)
